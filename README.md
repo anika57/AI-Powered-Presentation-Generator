@@ -6,13 +6,24 @@ SlideCrafter AI is an innovative, chat-based application that leverages Google's
 
 The application fulfills the requirements of the assignment by providing a single-page chat interface inspired by tools like MagicSlides, robust AI integration, and a seamless presentation generation workflow.
 
+---
+
+## 🌐 Live Application
+
+The working application is deployed and available here:
+**[https://ai-powered-presentation-generator.vercel.app/](https://ai-powered-presentation-generator.vercel.app/)**
+
+---
+
 ## ✨ Features
 
-* **AI-Powered Generation:** Uses the `gemini-2.5-pro` (or similar configured model) to generate structured presentation content (title, bullet points) in a JSON format from a single user prompt.
+* **AI-Powered Generation:** Uses the `gemini-2.5-pro` model to generate structured presentation content (title, bullet points) in a JSON format from a single user prompt.
 * **Aesthetic UI:** Modern, responsive split-screen design using Tailwind CSS, featuring a chat history pane and a visual slide preview pane.
-* **Styled PPT Output:** Generates a visually appealing PPTX file with a **custom Master Slide**, ensuring consistent branding, background, title styling, and footers, eliminating image dependency issues.
-* **Dynamic Editing (Structure Ready):** The chat interface is set up to handle follow-up prompts for generating new presentations or editing the content of the currently displayed slides.
+* **Styled PPT Output:** Generates a visually appealing PPTX file with a **custom Master Slide**, ensuring consistent branding, background, title styling, and footers.
+* **Dynamic Editing:** The core requirement for editing is implemented! The application can send the **existing slide JSON** back to the AI with a new prompt (e.g., "Change the title of slide 3 to 'The Ant Army'"), allowing the Gemini model to dynamically update the presentation structure.
 * **Download Functionality:** Direct download of the generated `.pptx` file via the browser.
+
+---
 
 ## 🛠️ Tech Stack
 
@@ -20,6 +31,8 @@ The application fulfills the requirements of the assignment by providing a singl
 * **Styling:** Tailwind CSS
 * **AI:** Google Gemini API (`@google/genai`)
 * **PPT Generation:** `pptxgenjs`
+
+---
 
 ## ⚙️ Project Setup
 
@@ -39,7 +52,7 @@ The application fulfills the requirements of the assignment by providing a singl
 
 2.  **Install Dependencies:**
     ```bash
-    npm install 
+    npm install
     # or
     yarn install
     ```
@@ -58,11 +71,13 @@ The application fulfills the requirements of the assignment by providing a singl
     ```
     The application will be accessible at `http://localhost:3000`.
 
+---
+
 ## 🧑‍💻 Usage Instructions
 
 1.  **Enter a Prompt:** In the chat input field on the left, type a topic for your presentation (e.g., "A pitch deck for a new sustainable coffee brand").
-2.  **Generate Slides:** Click **Send**. The API will call Gemini, and the resulting JSON will be mapped and displayed as a visual preview on the right side.
-3.  **Review and Edit:** Review the generated slides in the preview pane.
+2.  **Generate Slides:** Click **Send**. The AI generates the content, and the resulting JSON is mapped and displayed as a visual preview on the right side.
+3.  **Review and Edit (Dynamic Editing):** To edit the slides, enter a new prompt referencing the existing content (e.g., "On slide 2, change the second bullet point to red and make it about pricing."). The AI will update the current slides instantly.
 4.  **Download PPTX:** Click the **Download PPTX** button in the preview header to generate and download the professionally styled file.
 
 ---
@@ -72,17 +87,12 @@ The application fulfills the requirements of the assignment by providing a singl
 ### 1. PPT Stability (Image Removal)
 
 * **Decision:** All image generation and display logic has been **removed** from the final `slideMapper.ts` and `PptPreview.tsx`.
-* **Reasoning:** Initial attempts failed due to frequent 404/CORS errors from the AI-generated image URLs. This decision ensures the core functionality (PPT download) is **100% stable** and reliable for the assignment submission.
+* **Reasoning:** This was necessary due to frequent 404/CORS errors from AI-generated image URLs during testing, ensuring the core functionality (PPT download) is **100% stable** and reliable.
 
-### 2. Slide Editing Logic
+### 2. Model Choice
 
-* **Design:** The current implementation treats every prompt as a full **re-generation** of the slide deck.
-* **Future Enhancement:** To fully meet the editing requirement, the `handleSendMessage` function would need to send the existing `slides` JSON object to the API on subsequent calls, instructing the Gemini model to parse and return the *modified* JSON. This logic is a next step for production readiness.
+* The API is configured to use the high-quality **`gemini-2.5-pro`** model in `route.ts` to handle complex content structuring and dynamic editing accurately.
 
-### 3. Model Choice
+### 3. UI Library
 
-* The API is configured to use the high-quality **`gemini-2.5-pro`** model, as specified, though the endpoint uses `gemini-2.5-flash` for faster, more reliable generation during development.
-
-### 4. UI Library
-
-* All UI elements are created using **Tailwind CSS** for rapid, utility-first styling, achieving a modern, aesthetic appearance (Blue/Teal/White theme).
+* All UI elements are created using **Tailwind CSS** for rapid, utility-first styling, achieving a modern, aesthetic appearance.
