@@ -109,14 +109,14 @@ export default function Home() {
             {/* Left Column: Chat Interface */}
             <div className="w-full md:w-2/5 flex flex-col bg-white shadow-2xl z-10 border-r border-blue-50">
                 <header className="p-5 border-b border-blue-100 bg-white text-2xl font-extrabold text-blue-700 shadow-sm">
-                    ✨ **SlideCrafter AI**
+                    ✨ SlideCrafter AI
                 </header>
                 
                 {/* Chat History Area */}
                 <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
                     {chatHistory.length === 0 && (
                         <p className="text-gray-500 text-center mt-12 p-4 bg-white rounded-xl shadow-inner border border-gray-100">
-                            **Start here!** Enter a topic to generate your first presentation. <br/> (e.g., "A modern pitch deck for a carbon-neutral energy solution")
+                            Start here! Enter a topic to generate your first presentation. <br/> (e.g., "A modern pitch deck for a carbon-neutral energy solution")
                         </p>
                     )}
                     {chatHistory.map((msg, index) => (
