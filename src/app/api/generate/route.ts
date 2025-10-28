@@ -1,4 +1,3 @@
-// src/app/api/generate/route.ts
 import { GoogleGenAI } from '@google/genai';
 import { NextResponse } from 'next/server';
 
@@ -7,7 +6,7 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 // Define the required output structure for the slides
 const outputSchema = {
-    type: "object", // Must be object containing the slides array
+    type: "object", 
     properties: {
         slides: {
             type: "array",

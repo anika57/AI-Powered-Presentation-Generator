@@ -28,14 +28,13 @@ export async function generateSlides(prompt: string) {
 
     const data = await res.json();
 
-    console.log("Gemini API Key Loaded:", process.env.GEMINI_API_KEY ? "✅ yes" : "❌ no");
+    console.log("Gemini API Key Loaded:", process.env.GEMINI_API_KEY ? "yes" : "no");
 
     if (!res.ok) {
       console.error("Gemini API error:", data);
       throw new Error(data.error?.message || "Gemini API request failed");
     }
 
-    // ✅ Extract AI output text safely
     const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
     return {

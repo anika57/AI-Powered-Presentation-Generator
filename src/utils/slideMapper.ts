@@ -1,4 +1,3 @@
-// src/utils/slideMapper.ts (CRITICAL IMAGE FIX INCLUDED)
 import pptxgen from "pptxgenjs";
 
 // Define spacing constants
@@ -28,7 +27,6 @@ function parseFormattedText(text: string): any[] {
     });
     return textObjects;
 }
-// ---------------------------------------------------
 
 export function mapSlidesFromJson(pres: pptxgen, data: any) {
   if (!data?.slides || !Array.isArray(data.slides)) {
@@ -73,12 +71,9 @@ export function mapSlidesFromJson(pres: pptxgen, data: any) {
     // 3. IMPLEMENTATION OF IMAGE RENDERING LOGIC WITH HARDCODED TEST
     let imageUrl = slideData.image_url;
 
-    // --- CRITICAL TEST FIX: Force a working URL on the very first slide (index 0) ---
     if (i === 0) { 
-        // Verified working public domain image (Butterfly)
         imageUrl = "https://images.unsplash.com/photo-1518779576417-8e68e71c9987?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; 
     }
-    // --- END CRITICAL TEST FIX ---
     
     if (imageUrl && imageUrl.startsWith('http')) {
         slide.addImage({

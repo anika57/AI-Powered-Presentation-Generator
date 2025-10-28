@@ -1,14 +1,13 @@
-// src/app/page.tsx
 "use client";
 import React, { useState } from 'react';
-import ChatInput from '../app/components/Chat/ChatInput'; // Assuming you create this component
-import PptPreview from '../app/components/PptPreview'; // Assuming this is moved to components
-import ChatMessage from '../app/components/Chat/ChatMessage'; // Assuming you create this component
+import ChatInput from '../app/components/Chat/ChatInput'; 
+import PptPreview from '../app/components/PptPreview'; 
+import ChatMessage from '../app/components/Chat/ChatMessage'; 
 
 interface Slide {
     title: string;
     content: string[];
-    image_url: string; // Kept in interface to match AI's output schema
+    image_url: string; 
 }
 
 interface ChatHistoryItem {
@@ -46,7 +45,7 @@ export default function Home() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                     prompt: inputPrompt,
-                    currentSlides: isEditing ? slides : null // <-- CORE EDITING LOGIC
+                    currentSlides: isEditing ? slides : null 
                 }),
             });
 
@@ -106,13 +105,11 @@ export default function Home() {
     return (
         <div className="flex h-screen bg-gray-100 antialiased">
             
-            {/* Left Column: Chat Interface */}
             <div className="w-full md:w-2/5 flex flex-col bg-white shadow-2xl z-10 border-r border-blue-50">
                 <header className="p-5 border-b border-blue-100 bg-white text-2xl font-extrabold text-blue-700 shadow-sm">
                     ✨ SlideCrafter AI
                 </header>
                 
-                {/* Chat History Area */}
                 <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
                     {chatHistory.length === 0 && (
                         <p className="text-gray-500 text-center mt-12 p-4 bg-white rounded-xl shadow-inner border border-gray-100">
@@ -124,7 +121,6 @@ export default function Home() {
                     ))}
                 </div>
 
-                {/* Input Area */}
                 <div className="p-4 border-t border-blue-100 bg-white">
                     <ChatInput 
                         prompt={prompt} 
@@ -135,7 +131,6 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* Right Column: PPT Preview */}
             <div className="hidden md:flex w-3/5 p-6 bg-blue-50 justify-center items-stretch">
                 <PptPreview 
                     slideData={slides} 

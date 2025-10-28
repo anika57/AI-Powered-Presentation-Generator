@@ -1,4 +1,3 @@
-// src/components/ChatInput.tsx (Updated UI/Aesthetics)
 import React from 'react';
 
 interface ChatInputProps {
